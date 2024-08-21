@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "903434626405",
+    "project_id": "cinemamanager-dc12d",
+    "storage_bucket": "cinemamanager-dc12d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:903434626405:android:769ffdff48ef976be0ed8c",
+        "android_client_info": {
+          "package_name": "com.duydv.vn.cinemamanager"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQhUCrFLs9KxRk3h_dOuDUu_qX95RSa9E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
