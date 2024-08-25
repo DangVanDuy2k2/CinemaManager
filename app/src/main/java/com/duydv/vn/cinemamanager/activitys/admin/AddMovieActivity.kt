@@ -11,9 +11,10 @@ import com.duydv.vn.cinemamanager.adapter.admin.AdminSelectCategoryAdapter
 import com.duydv.vn.cinemamanager.constant.Constant
 import com.duydv.vn.cinemamanager.constant.GlobalFunction
 import com.duydv.vn.cinemamanager.databinding.ActivityAddMovieBinding
+import com.duydv.vn.cinemamanager.model.Category
+import com.duydv.vn.cinemamanager.model.Movie
 import com.duydv.vn.cinemamanager.util.StringUtil
 import com.example.cinema.listener.IGetDateListener
-import com.example.cinema.model.*
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -69,8 +70,6 @@ class AddMovieActivity : BaseActivity() {
             mActivityAddMovieBinding!!.edtPrice.setText(mMovie?.price.toString())
             mActivityAddMovieBinding!!.tvDate.text = mMovie?.date
             mActivityAddMovieBinding!!.edtImage.setText(mMovie?.image)
-            mActivityAddMovieBinding!!.edtImageBanner.setText(mMovie?.imageBanner)
-            mActivityAddMovieBinding!!.edtVideo.setText(mMovie?.url)
         } else {
             mActivityAddMovieBinding!!.tvTitle.text = getString(R.string.add_movie_title)
             mActivityAddMovieBinding!!.btnAddOrEdit.text = getString(R.string.action_add)
@@ -131,8 +130,6 @@ class AddMovieActivity : BaseActivity() {
         val strPrice = mActivityAddMovieBinding!!.edtPrice.text.toString().trim { it <= ' ' }
         val strDate = mActivityAddMovieBinding!!.tvDate.text.toString().trim { it <= ' ' }
         val strImage = mActivityAddMovieBinding!!.edtImage.text.toString().trim { it <= ' ' }
-        val strImageBanner = mActivityAddMovieBinding!!.edtImageBanner.text.toString().trim { it <= ' ' }
-        val strVideo = mActivityAddMovieBinding!!.edtVideo.text.toString().trim { it <= ' ' }
         if (mCategorySelected == null || mCategorySelected!!.id <= 0) {
             Toast.makeText(this, getString(R.string.msg_category_movie_require), Toast.LENGTH_SHORT).show()
             return
@@ -157,14 +154,6 @@ class AddMovieActivity : BaseActivity() {
             Toast.makeText(this, getString(R.string.msg_image_movie_require), Toast.LENGTH_SHORT).show()
             return
         }
-        if (StringUtil.isEmpty(strImageBanner)) {
-            Toast.makeText(this, getString(R.string.msg_image_banner_movie_require), Toast.LENGTH_SHORT).show()
-            return
-        }
-        if (StringUtil.isEmpty(strVideo)) {
-            Toast.makeText(this, getString(R.string.msg_video_movie_require), Toast.LENGTH_SHORT).show()
-            return
-        }
 
         // Update phim
         if (isUpdate) {
@@ -178,8 +167,6 @@ class AddMovieActivity : BaseActivity() {
                 map["rooms"] = GlobalFunction.getListRooms()
             }
             map["image"] = strImage
-            map["imageBanner"] = strImageBanner
-            map["url"] = strVideo
             map["categoryId"] = mCategorySelected?.id
             map["categoryName"] = mCategorySelected?.name
             MyApplication[this].getMovieDatabaseReference()
@@ -190,6 +177,7 @@ class AddMovieActivity : BaseActivity() {
                         getString(R.string.msg_edit_movie_successfully), Toast.LENGTH_SHORT).show()
                     GlobalFunction.hideSoftKeyboard(this)
                 }
+            onBackPressed()
             return
         }
 
@@ -197,7 +185,7 @@ class AddMovieActivity : BaseActivity() {
         showProgressDialog(true)
         val movieId = System.currentTimeMillis()
         val movie = Movie(movieId, strName, strDescription, strPrice.toInt(),
-            strDate, strImage, strImageBanner, strVideo, GlobalFunction.getListRooms(),
+            strDate, strImage, GlobalFunction.getListRooms(),
             mCategorySelected!!.id, mCategorySelected?.name, 0)
         MyApplication[this].getMovieDatabaseReference().child(movieId.toString())
             .setValue(movie) { _: DatabaseError?, _: DatabaseReference? ->
@@ -208,11 +196,10 @@ class AddMovieActivity : BaseActivity() {
                 mActivityAddMovieBinding!!.edtPrice.setText("")
                 mActivityAddMovieBinding!!.tvDate.text = ""
                 mActivityAddMovieBinding!!.edtImage.setText("")
-                mActivityAddMovieBinding!!.edtImageBanner.setText("")
-                mActivityAddMovieBinding!!.edtVideo.setText("")
                 GlobalFunction.hideSoftKeyboard(this)
                 Toast.makeText(this, getString(R.string.msg_add_movie_successfully),
                     Toast.LENGTH_SHORT).show()
             }
+        onBackPressed()
     }
 }

@@ -70,12 +70,15 @@
             <EditText
                 android:id="@+id/edt_description"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:layout_height="110dp"
                 android:layout_marginTop="@dimen/define_dimen_10"
+                android:layout_marginBottom="@dimen/define_dimen_10"
                 android:background="@drawable/bg_white_corner_6_border_gray"
                 android:hint="@string/hint_description"
                 android:imeOptions="actionNext"
-                android:inputType="text"
+                android:inputType="textMultiLine"
+                android:lines="5"
                 android:padding="@dimen/define_dimen_12"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/text_size_small" />
@@ -130,35 +133,11 @@
                 android:layout_marginTop="@dimen/define_dimen_10"
                 android:background="@drawable/bg_white_corner_6_border_gray"
                 android:hint="@string/hint_image"
+                android:gravity="top"
                 android:imeOptions="actionNext"
-                android:inputType="text"
                 android:padding="@dimen/define_dimen_12"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/text_size_small" />
-
-            <EditText
-                android:id="@+id/edt_image_banner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/define_dimen_10"
-                android:background="@drawable/bg_white_corner_6_border_gray"
-                android:hint="@string/hint_image_banner"
-                android:imeOptions="actionNext"
-                android:inputType="text"
-                android:padding="@dimen/define_dimen_12"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/text_size_small" />
-
-            <EditText
-                android:id="@+id/edt_video"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/define_dimen_10"
-                android:background="@drawable/bg_white_corner_6_border_gray"
-                android:hint="@string/hint_url"
-                android:imeOptions="actionDone"
-                android:inputType="text"
-                android:padding="@dimen/define_dimen_12"
+                android:inputType="textMultiLine"
+                android:lines="5"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/text_size_small" />
 

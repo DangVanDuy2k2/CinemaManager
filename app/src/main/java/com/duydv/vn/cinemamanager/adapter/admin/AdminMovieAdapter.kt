@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.duydv.vn.cinemamanager.constant.Constant
 import com.duydv.vn.cinemamanager.databinding.ItemMovieAdminBinding
 import com.duydv.vn.cinemamanager.util.GlideUtils
-import com.example.cinema.model.Movie
+import com.duydv.vn.cinemamanager.model.Movie
 
 class AdminMovieAdapter(
     private var mContext: Context?, private val mListMovies: List<Movie>?,

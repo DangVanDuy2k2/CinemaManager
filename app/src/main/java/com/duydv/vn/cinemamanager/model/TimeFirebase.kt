@@ -1,5 +1,6 @@
-package com.example.cinema.model
+package com.duydv.vn.cinemamanager.model
 
+import com.duydv.vn.cinemamanager.model.Seat
 import java.io.Serializable
 
 class TimeFirebase : Serializable {

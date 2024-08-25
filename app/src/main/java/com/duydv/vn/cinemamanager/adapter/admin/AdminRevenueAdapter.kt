@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.duydv.vn.cinemamanager.adapter.admin.AdminRevenueAdapter.AdminRevenueViewHolder
 import com.duydv.vn.cinemamanager.constant.Constant
 import com.duydv.vn.cinemamanager.databinding.ItemRevenueBinding
-import com.example.cinema.model.Revenue
+import com.duydv.vn.cinemamanager.model.Revenue
 
 class AdminRevenueAdapter(private val mListRevenue: List<Revenue>?) :
     RecyclerView.Adapter<AdminRevenueViewHolder>() {

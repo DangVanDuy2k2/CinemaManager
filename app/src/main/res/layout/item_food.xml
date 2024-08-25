@@ -7,17 +7,27 @@
     android:layout_marginBottom="@dimen/define_dimen_10"
     android:layout_marginEnd="@dimen/define_dimen_10"
     app:cardCornerRadius="@dimen/define_dimen_6">
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/define_dimen_12">
+        >
+
+        <ImageView
+            android:id="@+id/img_food"
+            android:layout_centerVertical="true"
+            android:scaleType="centerCrop"
+            android:layout_marginStart="@dimen/define_dimen_8"
+            android:layout_width="@dimen/define_dimen_90"
+            android:layout_height="@dimen/define_dimen_60">
+        </ImageView>
 
         <LinearLayout
+            android:layout_toEndOf="@+id/img_food"
+            android:layout_marginStart="@dimen/define_dimen_8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_toStartOf="@+id/img_edit"
+            android:layout_toStartOf="@+id/layout_edit_delete"
             android:layout_marginEnd="@dimen/define_dimen_5"
             android:layout_centerVertical="true"
             tools:ignore="DisableBaselineAlignment">
@@ -34,6 +44,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/app_name"
                     android:textSize="@dimen/text_size_small"
+                    android:maxLines="2"
                     android:textColor="@color/colorPrimaryDark"/>
 
                 <TextView
@@ -43,51 +54,57 @@
                     android:textStyle="bold"
                     android:textSize="@dimen/text_size_small"
                     android:textColor="@color/red"/>
-            </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/label_quantity"
-                    android:textSize="@dimen/text_size_small"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tv_quantity"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/text_size_small"
-                    android:textColor="@color/purple_700"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_quantity"
+                        android:textSize="@dimen/text_size_xsmall"
+                        android:textColor="@color/colorPrimaryDark"/>
+
+                    <TextView
+                        android:id="@+id/tv_quantity"
+                        android:layout_marginStart="@dimen/define_dimen_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/text_size_xsmall"
+                        android:textColor="@color/purple_700"/>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/img_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toStartOf="@+id/img_delete"
-            android:layout_marginEnd="@dimen/define_dimen_5"
-            android:padding="@dimen/define_dimen_5"
-            android:src="@drawable/ic_edit"
-            tools:ignore="ContentDescription" />
-
-        <ImageView
-            android:id="@+id/img_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:id="@+id/layout_edit_delete"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:padding="@dimen/define_dimen_5"
-            android:src="@drawable/ic_delete"
-            tools:ignore="ContentDescription" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/define_dimen_5"
+                android:padding="@dimen/define_dimen_5"
+                android:layout_marginBottom="@dimen/define_dimen_8"
+                android:src="@drawable/ic_edit"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/img_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/define_dimen_5"
+                android:src="@drawable/ic_delete"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

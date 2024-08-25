@@ -78,7 +78,7 @@
     <string name="total_amount_label">Tổng tiền:</string>
     <string name="select_seat_label">Chọn ghế ngồi</string>
     <string name="main_screen">Màn hình chính</string>
-    <string name="label_quantity">Số lượng</string>
+    <string name="label_quantity">SL: </string>
     <string name="add_category_title">Thêm thể loại</string>
     <string name="edit_category_title">Chỉnh sửa thể loại</string>
     <string name="select_category">Chọn thể loại (*)</string>
@@ -135,6 +135,7 @@
     <string name="msg_edit_food_successfully">Chỉnh sửa đồ ăn/đồ uống thành công</string>
     <string name="msg_name_category_require">Vui lòng nhập tên thể loại</string>
     <string name="msg_image_category_require">Vui lòng nhập link ảnh thể loại</string>
+    <string name="msg_image_food_require">Vui lòng nhập link ảnh đồ ăn/đồ uống</string>
     <string name="msg_edit_category_successfully">Chỉnh sửa thể loại thành công</string>
     <string name="msg_add_category_successfully">Thêm thể loại thành công</string>
     <string name="msg_delete_category_successfully">Xóa thể loại thành công</string>

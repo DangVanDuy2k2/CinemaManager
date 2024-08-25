@@ -8,8 +8,8 @@ import com.duydv.vn.cinemamanager.activitys.BaseActivity
 import com.duydv.vn.cinemamanager.constant.Constant
 import com.duydv.vn.cinemamanager.constant.GlobalFunction
 import com.duydv.vn.cinemamanager.databinding.ActivityAddFoodBinding
+import com.duydv.vn.cinemamanager.model.Food
 import com.duydv.vn.cinemamanager.util.StringUtil
-import com.example.cinema.model.Food
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 
@@ -40,6 +40,7 @@ class AddFoodActivity : BaseActivity() {
             mActivityAddFoodBinding!!.edtName.setText(mFood?.name)
             mActivityAddFoodBinding!!.edtPrice.setText(mFood?.price.toString())
             mActivityAddFoodBinding!!.edtQuantity.setText(mFood?.quantity.toString())
+            mActivityAddFoodBinding!!.edtImage.setText(mFood?.image.toString())
         } else {
             mActivityAddFoodBinding!!.tvTitle.text = getString(R.string.add_food_title)
             mActivityAddFoodBinding!!.btnAddOrEdit.text = getString(R.string.action_add)
@@ -50,6 +51,7 @@ class AddFoodActivity : BaseActivity() {
         val strName = mActivityAddFoodBinding!!.edtName.text.toString().trim { it <= ' ' }
         val strPrice = mActivityAddFoodBinding!!.edtPrice.text.toString().trim { it <= ' ' }
         val strQuantity = mActivityAddFoodBinding!!.edtQuantity.text.toString().trim { it <= ' ' }
+        val strImage = mActivityAddFoodBinding!!.edtImage.text.toString().trim { it <= ' ' }
         if (StringUtil.isEmpty(strName)) {
             Toast.makeText(this, getString(R.string.msg_name_food_require), Toast.LENGTH_SHORT)
                 .show()
@@ -62,6 +64,11 @@ class AddFoodActivity : BaseActivity() {
         }
         if (StringUtil.isEmpty(strQuantity)) {
             Toast.makeText(this, getString(R.string.msg_quantity_food_require), Toast.LENGTH_SHORT)
+                .show()
+            return
+        }
+        if (StringUtil.isEmpty(strImage)) {
+            Toast.makeText(this, getString(R.string.msg_image_food_require), Toast.LENGTH_SHORT)
                 .show()
             return
         }
@@ -83,13 +90,14 @@ class AddFoodActivity : BaseActivity() {
                     ).show()
                     GlobalFunction.hideSoftKeyboard(this@AddFoodActivity)
                 }
+            onBackPressed()
             return
         }
 
         // Add food
         showProgressDialog(true)
         val foodId = System.currentTimeMillis()
-        val food = Food(foodId, strName, strPrice.toInt(), strQuantity.toInt())
+        val food = Food(foodId, strName, strImage, strPrice.toInt(), strQuantity.toInt())
         MyApplication[this].getFoodDatabaseReference().child(foodId.toString())
             .setValue(food) { _: DatabaseError?, _: DatabaseReference? ->
                 showProgressDialog(false)

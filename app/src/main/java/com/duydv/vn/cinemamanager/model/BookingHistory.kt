@@ -1,4 +1,4 @@
-package com.example.cinema.model
+package com.duydv.vn.cinemamanager.model
 
 class BookingHistory {
     var id: Long = 0

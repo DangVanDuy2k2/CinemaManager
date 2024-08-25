@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.duydv.vn.cinemamanager.constant.Constant
 import com.duydv.vn.cinemamanager.databinding.ItemFoodBinding
 import com.duydv.vn.cinemamanager.adapter.admin.AdminFoodAdapter.FoodViewHolder
-import com.example.cinema.model.Food
+import com.duydv.vn.cinemamanager.util.GlideUtils
+import com.duydv.vn.cinemamanager.model.Food
 
 class AdminFoodAdapter(
     private val mListFood: List<Food>?,
@@ -29,6 +30,7 @@ class AdminFoodAdapter(
         val strPrice = food.price.toString() + Constant.UNIT_CURRENCY
         holder.mItemFoodBinding.tvPrice.text = strPrice
         holder.mItemFoodBinding.tvQuantity.text = food.quantity.toString()
+        GlideUtils.loadUrl(food.image, holder.mItemFoodBinding.imgFood)
         holder.mItemFoodBinding.imgEdit.setOnClickListener { iManagerFoodListener.editFood(food) }
         holder.mItemFoodBinding.imgDelete.setOnClickListener { iManagerFoodListener.deleteFood(food) }
     }

@@ -24,8 +24,8 @@ import com.duydv.vn.cinemamanager.constant.GlobalFunction.hideSoftKeyboard
 import com.duydv.vn.cinemamanager.constant.GlobalFunction.startActivity
 import com.duydv.vn.cinemamanager.databinding.FragmentAdminHomeBinding
 import com.duydv.vn.cinemamanager.util.StringUtil.isEmpty
-import com.example.cinema.model.Category
-import com.example.cinema.model.Movie
+import com.duydv.vn.cinemamanager.model.Category
+import com.duydv.vn.cinemamanager.model.Movie
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener

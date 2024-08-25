@@ -23,7 +23,7 @@ import com.duydv.vn.cinemamanager.util.DateTimeUtils.getLongCurrentTimeStamp
 import com.duydv.vn.cinemamanager.util.StringUtil.isEmpty
 import com.example.cinema.event.ResultQrCodeEvent
 import com.example.cinema.listener.IOnSingleClickListener
-import com.example.cinema.model.BookingHistory
+import com.duydv.vn.cinemamanager.model.BookingHistory
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener

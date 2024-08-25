@@ -1,4 +1,4 @@
-package com.example.cinema.model
+package com.duydv.vn.cinemamanager.model
 
 import java.io.Serializable
 

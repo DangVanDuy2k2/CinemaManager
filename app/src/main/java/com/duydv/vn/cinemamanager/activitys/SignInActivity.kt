@@ -8,7 +8,7 @@ import com.duydv.vn.cinemamanager.constant.GlobalFunction
 import com.duydv.vn.cinemamanager.databinding.ActivitySignInBinding
 import com.duydv.vn.cinemamanager.prefs.DataStoreManager
 import com.duydv.vn.cinemamanager.util.StringUtil
-import com.example.cinema.model.User
+import com.duydv.vn.cinemamanager.model.User
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth

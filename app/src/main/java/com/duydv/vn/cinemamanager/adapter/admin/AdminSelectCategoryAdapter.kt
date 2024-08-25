@@ -7,7 +7,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.annotation.LayoutRes
 import com.duydv.vn.cinemamanager.R
-import com.example.cinema.model.Category
+import com.duydv.vn.cinemamanager.model.Category
 
 class AdminSelectCategoryAdapter(context: Context, @LayoutRes resource: Int,
                                  list: List<Category>) : ArrayAdapter<Category>(context, resource, list) {

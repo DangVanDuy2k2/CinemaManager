@@ -17,10 +17,10 @@ import com.duydv.vn.cinemamanager.activitys.admin.AdminMainActivity
 import com.duydv.vn.cinemamanager.prefs.DataStoreManager
 import com.duydv.vn.cinemamanager.util.StringUtil
 import com.example.cinema.listener.IGetDateListener
-import com.example.cinema.model.Movie
-import com.example.cinema.model.RoomFirebase
-import com.example.cinema.model.Seat
-import com.example.cinema.model.TimeFirebase
+import com.duydv.vn.cinemamanager.model.Movie
+import com.duydv.vn.cinemamanager.model.RoomFirebase
+import com.duydv.vn.cinemamanager.model.Seat
+import com.duydv.vn.cinemamanager.model.TimeFirebase
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.common.BitMatrix

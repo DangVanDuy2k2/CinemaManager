@@ -9,7 +9,7 @@ import com.duydv.vn.cinemamanager.constant.Constant
 import com.duydv.vn.cinemamanager.constant.GlobalFunction
 import com.duydv.vn.cinemamanager.databinding.ActivityAddCategoryBinding
 import com.duydv.vn.cinemamanager.util.StringUtil
-import com.example.cinema.model.Category
+import com.duydv.vn.cinemamanager.model.Category
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 

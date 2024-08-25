@@ -7,8 +7,8 @@ import com.duydv.vn.cinemamanager.MyApplication
 import com.duydv.vn.cinemamanager.adapter.admin.AdminRevenueAdapter
 import com.duydv.vn.cinemamanager.constant.Constant
 import com.duydv.vn.cinemamanager.databinding.ActivityAdminRevenueBinding
-import com.example.cinema.model.BookingHistory
-import com.example.cinema.model.Revenue
+import com.duydv.vn.cinemamanager.model.BookingHistory
+import com.duydv.vn.cinemamanager.model.Revenue
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener

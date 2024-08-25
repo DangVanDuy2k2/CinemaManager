@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.duydv.vn.cinemamanager.adapter.admin.AdminCategoryAdapter.CategoryViewHolder
 import com.duydv.vn.cinemamanager.databinding.ItemCategoryAdminBinding
 import com.duydv.vn.cinemamanager.util.GlideUtils
-import com.example.cinema.model.Category
+import com.duydv.vn.cinemamanager.model.Category
 
 class AdminCategoryAdapter(
     private val mListCategory: List<Category>?,

@@ -24,7 +24,7 @@ import com.duydv.vn.cinemamanager.constant.GlobalFunction.startActivity
 import com.duydv.vn.cinemamanager.databinding.FragmentAdminFoodBinding
 import com.duydv.vn.cinemamanager.util.StringUtil.isEmpty
 import com.duydv.vn.cinemamanager.adapter.admin.AdminFoodAdapter
-import com.example.cinema.model.Food
+import com.duydv.vn.cinemamanager.model.Food
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener

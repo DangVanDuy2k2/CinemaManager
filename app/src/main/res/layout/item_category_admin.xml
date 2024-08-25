@@ -11,7 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/define_dimen_12">
+        android:padding="@dimen/define_dimen_8">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,8 +24,9 @@
 
             <ImageView
                 android:id="@+id/img_category"
-                android:layout_width="@dimen/define_dimen_60"
-                android:layout_height="@dimen/define_dimen_40"
+                android:scaleType="centerCrop"
+                android:layout_width="@dimen/define_dimen_90"
+                android:layout_height="@dimen/define_dimen_60"
                 tools:ignore="ContentDescription" />
 
             <TextView
