@@ -1,4 +1,4 @@
-package com.duydv.vn.cinemamanager.model
+package com.example.cinema.model
 
 import com.google.gson.Gson
 

@@ -3,14 +3,13 @@ package com.duydv.vn.cinemamanager.activitys
 import android.os.Bundle
 import android.widget.Toast
 import com.duydv.vn.cinemamanager.R
-import com.duydv.vn.cinemamanager.constant.ConstantKey
+import com.duydv.vn.cinemamanager.constant.Constant
 import com.duydv.vn.cinemamanager.constant.GlobalFunction
 import com.duydv.vn.cinemamanager.databinding.ActivitySignInBinding
-import com.duydv.vn.cinemamanager.model.User
 import com.duydv.vn.cinemamanager.prefs.DataStoreManager
 import com.duydv.vn.cinemamanager.util.StringUtil
+import com.example.cinema.model.User
 import com.google.android.gms.tasks.Task
-import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 
@@ -69,7 +68,7 @@ class SignInActivity : BaseActivity() {
                     val user = firebaseAuth.currentUser
                     if (user != null) {
                         val userObject = User(user.email, password)
-                        if (user.email != null && user.email!!.contains(ConstantKey.ADMIN_EMAIL_FORMAT)) {
+                        if (user.email != null && user.email!!.contains(Constant.ADMIN_EMAIL_FORMAT)) {
                             userObject.isAdmin = true
                         }
                         DataStoreManager.setUser(userObject)

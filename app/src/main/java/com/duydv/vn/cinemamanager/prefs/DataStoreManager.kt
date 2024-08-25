@@ -1,8 +1,8 @@
 package com.duydv.vn.cinemamanager.prefs
 
 import android.content.Context
-import com.duydv.vn.cinemamanager.model.User
 import com.duydv.vn.cinemamanager.util.StringUtil.isEmpty
+import com.example.cinema.model.User
 import com.google.gson.Gson
 
 class DataStoreManager {

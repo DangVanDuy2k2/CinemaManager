@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.duydv.vn.cinemamanager.activitys.ChangePasswordActivity
 import com.duydv.vn.cinemamanager.activitys.SignInActivity
+import com.duydv.vn.cinemamanager.activitys.admin.AdminRevenueActivity
 import com.duydv.vn.cinemamanager.constant.GlobalFunction.startActivity
 import com.duydv.vn.cinemamanager.databinding.FragmentAdminManageBinding
 import com.duydv.vn.cinemamanager.prefs.DataStoreManager
@@ -22,9 +23,14 @@ class AdminManageFragment : Fragment() {
         val fragmentAdminManageBinding =
             FragmentAdminManageBinding.inflate(inflater, container, false)
         fragmentAdminManageBinding.tvEmail.text = DataStoreManager.getUser()?.email
+        fragmentAdminManageBinding.layoutReport.setOnClickListener { onClickReport() }
         fragmentAdminManageBinding.layoutSignOut.setOnClickListener { onClickSignOut() }
         fragmentAdminManageBinding.layoutChangePassword.setOnClickListener { onClickChangePassword() }
         return fragmentAdminManageBinding.root
+    }
+
+    private fun onClickReport() {
+        startActivity(activity, AdminRevenueActivity::class.java)
     }
 
     private fun onClickChangePassword() {
