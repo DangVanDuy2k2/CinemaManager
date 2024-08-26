@@ -3,7 +3,6 @@ package com.duydv.vn.cinemamanager.activitys
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.duydv.vn.cinemamanager.activitys.admin.ConfirmBookingActivity
 import com.duydv.vn.cinemamanager.MyApplication
 import com.duydv.vn.cinemamanager.R
 import com.duydv.vn.cinemamanager.constant.Constant

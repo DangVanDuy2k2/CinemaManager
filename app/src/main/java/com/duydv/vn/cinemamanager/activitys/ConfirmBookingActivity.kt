@@ -1,4 +1,4 @@
-package com.duydv.vn.cinemamanager.activitys.admin
+package com.duydv.vn.cinemamanager.activitys
 
 import android.annotation.SuppressLint
 import android.app.Dialog
@@ -10,7 +10,9 @@ import android.view.*
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.duydv.vn.cinemamanager.MyApplication
 import com.duydv.vn.cinemamanager.R
 import com.duydv.vn.cinemamanager.adapter.FoodDrinkAdapter
@@ -103,14 +105,14 @@ class ConfirmBookingActivity : AppCompatActivity() {
 
     private fun showListRooms() {
         val gridLayoutManager = GridLayoutManager(this, 2)
-//        mActivityConfirmBookingBinding!!.rcvRoom.layoutManager = gridLayoutManager
-//        mListRooms = getListRoomLocal()
-//        mRoomAdapter = RoomAdapter(mListRooms, object : RoomAdapter.IManagerRoomListener{
-//            override fun clickItemRoom(room: Room) {
-//                onClickSelectRoom(room)
-//            }
-//        })
-//        mActivityConfirmBookingBinding!!.rcvRoom.adapter = mRoomAdapter
+        mActivityConfirmBookingBinding!!.rcvRoom.layoutManager = gridLayoutManager
+        mListRooms = getListRoomLocal()
+        mRoomAdapter = RoomAdapter(mListRooms, object : RoomAdapter.IManagerRoomListener {
+            override fun clickItemRoom(room: Room) {
+                onClickSelectRoom(room)
+            }
+        })
+        mActivityConfirmBookingBinding!!.rcvRoom.adapter = mRoomAdapter
     }
 
     private fun getListRoomLocal(): List<Room> {
@@ -157,17 +159,17 @@ class ConfirmBookingActivity : AppCompatActivity() {
     }
 
     private fun showListTimes(roomId: Int) {
-//        mActivityConfirmBookingBinding!!.layoutSelecteTime.visibility = View.VISIBLE
-//        mActivityConfirmBookingBinding!!.layoutSelecteSeat.visibility = View.GONE
-//        val gridLayoutManager = GridLayoutManager(this, 2)
-//        mActivityConfirmBookingBinding!!.rcvTime.layoutManager = gridLayoutManager
-//        mListTimes = getListTimeLocal(roomId)
-//        mTimeAdapter = TimeAdapter(mListTimes, object : TimeAdapter.IManagerTimeListener{
-//            override fun clickItemTime(time: SlotTime) {
-//                onClickSelectTime(time)
-//            }
-//        })
-//        mActivityConfirmBookingBinding!!.rcvTime.adapter = mTimeAdapter
+        mActivityConfirmBookingBinding!!.layoutSelecteTime.visibility = View.VISIBLE
+        mActivityConfirmBookingBinding!!.layoutSelecteSeat.visibility = View.GONE
+        val gridLayoutManager = GridLayoutManager(this, 2)
+        mActivityConfirmBookingBinding!!.rcvTime.layoutManager = gridLayoutManager
+        mListTimes = getListTimeLocal(roomId)
+        mTimeAdapter = TimeAdapter(mListTimes, object : TimeAdapter.IManagerTimeListener {
+            override fun clickItemTime(time: SlotTime) {
+                onClickSelectTime(time)
+            }
+        })
+        mActivityConfirmBookingBinding!!.rcvTime.adapter = mTimeAdapter
     }
 
     private fun getListTimeLocal(roomId: Int): List<SlotTime> {
@@ -205,16 +207,16 @@ class ConfirmBookingActivity : AppCompatActivity() {
     }
 
     private fun showListSeats(time: SlotTime) {
-//        mActivityConfirmBookingBinding!!.layoutSelecteSeat.visibility = View.VISIBLE
-//        val gridLayoutManager = GridLayoutManager(this, 6)
-//        mActivityConfirmBookingBinding!!.rcvSeat.layoutManager = gridLayoutManager
-//        mListSeats = getListSeatLocal(time)
-//        mSeatAdapter = SeatAdapter(mListSeats, object : SeatAdapter.IManagerSeatListener{
-//            override fun clickItemSeat(seat: SeatLocal) {
-//                onClickItemSeat(seat)
-//            }
-//        })
-//        mActivityConfirmBookingBinding!!.rcvSeat.adapter = mSeatAdapter
+        mActivityConfirmBookingBinding!!.layoutSelecteSeat.visibility = View.VISIBLE
+        val gridLayoutManager = GridLayoutManager(this, 6)
+        mActivityConfirmBookingBinding!!.rcvSeat.layoutManager = gridLayoutManager
+        mListSeats = getListSeatLocal(time)
+        mSeatAdapter = SeatAdapter(mListSeats, object : SeatAdapter.IManagerSeatListener {
+            override fun clickItemSeat(seat: SeatLocal) {
+                onClickItemSeat(seat)
+            }
+        })
+        mActivityConfirmBookingBinding!!.rcvSeat.adapter = mSeatAdapter
     }
 
     private fun getListSeatLocal(time: SlotTime): List<SeatLocal> {
@@ -267,14 +269,14 @@ class ConfirmBookingActivity : AppCompatActivity() {
             return
         }
         seat.isChecked = !seat.isChecked
-        //mSeatAdapter!!.notifyDataSetChanged()
+        mSeatAdapter!!.notifyDataSetChanged()
     }
 
     private fun initListFoodAndDrink() {
-//        val linearLayoutManager = LinearLayoutManager(this)
-//        mActivityConfirmBookingBinding!!.rcvFoodDrink.layoutManager = linearLayoutManager
-//        val decoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-//        mActivityConfirmBookingBinding!!.rcvFoodDrink.addItemDecoration(decoration)
+        val linearLayoutManager = LinearLayoutManager(this)
+        mActivityConfirmBookingBinding!!.rcvFoodDrink.layoutManager = linearLayoutManager
+        val decoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+        mActivityConfirmBookingBinding!!.rcvFoodDrink.addItemDecoration(decoration)
         getListFoodAndDrink()
     }
 
@@ -293,12 +295,14 @@ class ConfirmBookingActivity : AppCompatActivity() {
                             mListFood!!.add(0, food)
                         }
                     }
-//                mFoodDrinkAdapter = FoodDrinkAdapter(mListFood, object : FoodDrinkAdapter.IManagerFoodDrinkListener{
-//                    override fun selectCount(food: Food, count: Int) {
-//                        selectedCountFoodAndDrink(food, count)
-//                    }
-//                })
-//                mActivityConfirmBookingBinding!!.rcvFoodDrink.adapter = mFoodDrinkAdapter
+                    mFoodDrinkAdapter = FoodDrinkAdapter(
+                        mListFood,
+                        object : FoodDrinkAdapter.IManagerFoodDrinkListener {
+                            override fun selectCount(food: Food, count: Int) {
+                                selectedCountFoodAndDrink(food, count)
+                            }
+                        })
+                    mActivityConfirmBookingBinding!!.rcvFoodDrink.adapter = mFoodDrinkAdapter
                 }
 
                 override fun onCancelled(error: DatabaseError) {}
