@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.duydv.vn.cinemamanager.MyApplication
-import com.duydv.vn.cinemamanager.SearchActivity
+import com.duydv.vn.cinemamanager.activitys.SearchActivity
 import com.duydv.vn.cinemamanager.activitys.CategoryActivity
 import com.duydv.vn.cinemamanager.adapter.BannerMovieAdapter
 import com.duydv.vn.cinemamanager.adapter.CategoryAdapter

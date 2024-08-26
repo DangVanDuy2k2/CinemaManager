@@ -8,6 +8,7 @@ class Food : Serializable {
     var image: String? = null
     var price = 0
     var quantity = 0
+    var count = 0
 
     constructor() {}
     constructor(id: Long, name: String?, image: String?, price: Int, quantity: Int) {
