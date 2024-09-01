@@ -71,6 +71,9 @@ dependencies {
     //Event bus
     implementation 'org.greenrobot:eventbus:3.0.0'
 
+    // Paypal
+    implementation 'com.paypal.sdk:paypal-android-sdk:2.16.0'
+
     // QR code
     implementation 'com.google.zxing:core:3.2.1'
     implementation 'com.journeyapps:zxing-android-embedded:4.1.0'

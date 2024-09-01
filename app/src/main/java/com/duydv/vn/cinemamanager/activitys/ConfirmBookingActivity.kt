@@ -6,7 +6,9 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.*
+import android.widget.AdapterView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -18,9 +20,11 @@ import com.duydv.vn.cinemamanager.R
 import com.duydv.vn.cinemamanager.adapter.FoodDrinkAdapter
 import com.duydv.vn.cinemamanager.adapter.RoomAdapter
 import com.duydv.vn.cinemamanager.adapter.SeatAdapter
+import com.duydv.vn.cinemamanager.adapter.SelectPaymentAdapter
 import com.duydv.vn.cinemamanager.adapter.TimeAdapter
 import com.duydv.vn.cinemamanager.constant.Constant
 import com.duydv.vn.cinemamanager.constant.GlobalFunction
+import com.duydv.vn.cinemamanager.constant.PayPalConfig
 import com.duydv.vn.cinemamanager.databinding.ActivityConfirmBookingBinding
 import com.duydv.vn.cinemamanager.model.BookingHistory
 import com.duydv.vn.cinemamanager.model.Food
@@ -39,6 +43,14 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
+import com.paypal.android.sdk.payments.PayPalConfiguration
+import com.paypal.android.sdk.payments.PayPalPayment
+import com.paypal.android.sdk.payments.PayPalService
+import com.paypal.android.sdk.payments.PaymentActivity
+import com.paypal.android.sdk.payments.PaymentConfirmation
+import org.json.JSONException
+import org.json.JSONObject
+import java.math.BigDecimal
 import java.util.*
 
 class ConfirmBookingActivity : AppCompatActivity() {
@@ -141,7 +153,7 @@ class ConfirmBookingActivity : AppCompatActivity() {
         for (i in mListRooms!!.indices) {
             mListRooms!![i].isSelected = (mListRooms!![i].id == room.id)
         }
-        //mRoomAdapter!!.notifyDataSetChanged()
+        mRoomAdapter!!.notifyDataSetChanged()
         showListTimes(room.id)
     }
 
@@ -192,7 +204,7 @@ class ConfirmBookingActivity : AppCompatActivity() {
         for (i in mListTimes!!.indices) {
             mListTimes!![i].isSelected = mListTimes!![i].id == time.id
         }
-        //mTimeAdapter!!.notifyDataSetChanged()
+        mTimeAdapter!!.notifyDataSetChanged()
         showListSeats(time)
     }
 
@@ -325,16 +337,24 @@ class ConfirmBookingActivity : AppCompatActivity() {
         val list: MutableList<PaymentMethod> = ArrayList()
         list.add(PaymentMethod(Constant.PAYMENT_CASH, Constant.PAYMENT_CASH_TITLE))
         list.add(PaymentMethod(Constant.PAYMENT_PAYPAL, Constant.PAYMENT_PAYPAL_TITLE))
-//        val selectPaymentAdapter = SelectPaymentAdapter(this,
-//            R.layout.item_choose_option, list)
-//        mActivityConfirmBookingBinding!!.spnPayment.adapter = selectPaymentAdapter
-//        mActivityConfirmBookingBinding!!.spnPayment.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
-//                mPaymentMethodSelected = selectPaymentAdapter.getItem(position)
-//            }
-//
-//            override fun onNothingSelected(parent: AdapterView<*>?) {}
-//        }
+        val selectPaymentAdapter = SelectPaymentAdapter(
+            this,
+            R.layout.item_choose_option, list
+        )
+        mActivityConfirmBookingBinding!!.spnPayment.adapter = selectPaymentAdapter
+        mActivityConfirmBookingBinding!!.spnPayment.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View,
+                    position: Int,
+                    id: Long
+                ) {
+                    mPaymentMethodSelected = selectPaymentAdapter.getItem(position)
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+            }
     }
 
     private fun onClickBookingMovie() {
@@ -488,22 +508,24 @@ class ConfirmBookingActivity : AppCompatActivity() {
 
     private fun getPaymentPaypal(price: Int) {
         //Creating a paypalpayment
-//        val payment = PayPalPayment(BigDecimal(price.toString()),
-//            PayPalConfig.PAYPAL_CURRENCY, PayPalConfig.PAYPAl_CONTENT_TEXT,
-//            PayPalPayment.PAYMENT_INTENT_SALE)
-//
-//        //Creating Paypal Payment activity intent
-//        val intent = Intent(this, PaymentActivity::class.java)
-//
-//        //putting the paypal configuration to the intent
-//        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, PAYPAL_CONFIG)
-//
-//        //Puting paypal payment to the intent
-//        intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payment)
-//
-//        //Starting the intent activity for result
-//        //the request code will be used on the method onActivityResult
-//        startActivityForResult(intent, PAYPAL_REQUEST_CODE)
+        val payment = PayPalPayment(
+            BigDecimal(price.toString()),
+            PayPalConfig.PAYPAL_CURRENCY, PayPalConfig.PAYPAl_CONTENT_TEXT,
+            PayPalPayment.PAYMENT_INTENT_SALE
+        )
+
+        //Creating Paypal Payment activity intent
+        val intent = Intent(this, PaymentActivity::class.java)
+
+        //putting the paypal configuration to the intent
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, PAYPAL_CONFIG)
+
+        //Puting paypal payment to the intent
+        intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payment)
+
+        //Starting the intent activity for result
+        //the request code will be used on the method onActivityResult
+        startActivityForResult(intent, PAYPAL_REQUEST_CODE)
     }
 
     private fun getListSeatChecked(): List<SeatLocal> {
@@ -586,36 +608,38 @@ class ConfirmBookingActivity : AppCompatActivity() {
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-//        if (requestCode == PAYPAL_REQUEST_CODE) {
-//            var isPaymentSuccess = false
-//
-//            //If the result is OK i.e. user has not canceled the payment
-//            if (resultCode == RESULT_OK) {
-//                //Getting the payment confirmation
-//                val confirm: PaymentConfirmation = data!!.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION)!!
-//
-//                //if confirmation is not null
-//                try {
-//                    //Getting the payment details
-//                    val paymentDetails = confirm.toJSONObject().toString(4)
-//                    Log.e("Payment Result", paymentDetails)
-//                    val jsonDetails = JSONObject(paymentDetails)
-//                    val jsonResponse = jsonDetails.getJSONObject("response")
-//                    val strState = jsonResponse.getString("state")
-//                    Log.e("Payment State", strState)
-//                    if (PAYPAL_PAYMENT_STATUS_APPROVED == strState) {
-//                        isPaymentSuccess = true
-//                    }
-//                } catch (e: JSONException) {
-//                    e.printStackTrace()
-//                }
-//            } else {
-//                Toast.makeText(this, getString(R.string.msg_payment_error), Toast.LENGTH_SHORT).show()
-//            }
-//
-//            // Send result payment
-//            if (isPaymentSuccess) sendRequestOrder()
-//        }
+        if (requestCode == PAYPAL_REQUEST_CODE) {
+            var isPaymentSuccess = false
+
+            //If the result is OK i.e. user has not canceled the payment
+            if (resultCode == RESULT_OK) {
+                //Getting the payment confirmation
+                val confirm: PaymentConfirmation =
+                    data!!.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION)!!
+
+                //if confirmation is not null
+                try {
+                    //Getting the payment details
+                    val paymentDetails = confirm.toJSONObject().toString(4)
+                    Log.e("Payment Result", paymentDetails)
+                    val jsonDetails = JSONObject(paymentDetails)
+                    val jsonResponse = jsonDetails.getJSONObject("response")
+                    val strState = jsonResponse.getString("state")
+                    Log.e("Payment State", strState)
+                    if (PAYPAL_PAYMENT_STATUS_APPROVED == strState) {
+                        isPaymentSuccess = true
+                    }
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+            } else {
+                Toast.makeText(this, getString(R.string.msg_payment_error), Toast.LENGTH_SHORT)
+                    .show()
+            }
+
+            // Send result payment
+            if (isPaymentSuccess) sendRequestOrder()
+        }
     }
 
     companion object {
@@ -623,9 +647,9 @@ class ConfirmBookingActivity : AppCompatActivity() {
         const val PAYPAL_PAYMENT_STATUS_APPROVED = "approved"
 
         //Paypal Configuration Object
-//        val PAYPAL_CONFIG: PayPalConfiguration = PayPalConfiguration()
-//            .environment(PayPalConfig.PAYPAL_ENVIRONMENT_DEV)
-//            .clientId(PayPalConfig.PAYPAL_CLIENT_ID_DEV)
-//            .acceptCreditCards(false)
+        val PAYPAL_CONFIG: PayPalConfiguration = PayPalConfiguration()
+            .environment(PayPalConfig.PAYPAL_ENVIRONMENT_DEV)
+            .clientId(PayPalConfig.PAYPAL_CLIENT_ID_DEV)
+            .acceptCreditCards(false)
     }
 }

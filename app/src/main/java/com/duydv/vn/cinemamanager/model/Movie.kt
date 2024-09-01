@@ -9,6 +9,7 @@ class Movie : Serializable {
     var price = 0
     var date: String? = null
     var image: String? = null
+    var banner: String? = null
     var rooms: List<RoomFirebase?>? = null
     var categoryId: Long = 0
     var categoryName: String? = null
@@ -16,7 +17,7 @@ class Movie : Serializable {
 
     constructor() {}
     constructor(id: Long, name: String?, description: String?, price: Int, date: String?,
-                image: String?, rooms: List<RoomFirebase?>?,
+                image: String?, banner: String?, rooms: List<RoomFirebase?>?,
                 categoryId: Long, categoryName: String?, booked: Int) {
         this.id = id
         this.name = name
@@ -24,6 +25,7 @@ class Movie : Serializable {
         this.price = price
         this.date = date
         this.image = image
+        this.banner = banner
         this.rooms = rooms
         this.categoryId = categoryId
         this.categoryName = categoryName

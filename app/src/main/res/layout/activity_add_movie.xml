@@ -141,6 +141,21 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/text_size_small" />
 
+            <EditText
+                android:id="@+id/edt_banner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/define_dimen_10"
+                android:background="@drawable/bg_white_corner_6_border_gray"
+                android:hint="@string/hint_image_banner"
+                android:gravity="top"
+                android:imeOptions="actionNext"
+                android:padding="@dimen/define_dimen_12"
+                android:inputType="textMultiLine"
+                android:lines="5"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_size_small" />
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_add_or_edit"
                 android:layout_width="match_parent"

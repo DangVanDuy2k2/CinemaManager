@@ -130,6 +130,7 @@ class AddMovieActivity : BaseActivity() {
         val strPrice = mActivityAddMovieBinding!!.edtPrice.text.toString().trim { it <= ' ' }
         val strDate = mActivityAddMovieBinding!!.tvDate.text.toString().trim { it <= ' ' }
         val strImage = mActivityAddMovieBinding!!.edtImage.text.toString().trim { it <= ' ' }
+        val strImageBanner = mActivityAddMovieBinding!!.edtBanner.text.toString().trim { it <= ' ' }
         if (mCategorySelected == null || mCategorySelected!!.id <= 0) {
             Toast.makeText(this, getString(R.string.msg_category_movie_require), Toast.LENGTH_SHORT).show()
             return
@@ -152,6 +153,10 @@ class AddMovieActivity : BaseActivity() {
         }
         if (StringUtil.isEmpty(strImage)) {
             Toast.makeText(this, getString(R.string.msg_image_movie_require), Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (StringUtil.isEmpty(strImageBanner)) {
+            Toast.makeText(this, getString(R.string.msg_image_banner_movie_require), Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -185,7 +190,7 @@ class AddMovieActivity : BaseActivity() {
         showProgressDialog(true)
         val movieId = System.currentTimeMillis()
         val movie = Movie(movieId, strName, strDescription, strPrice.toInt(),
-            strDate, strImage, GlobalFunction.getListRooms(),
+            strDate, strImage, strImageBanner, GlobalFunction.getListRooms(),
             mCategorySelected!!.id, mCategorySelected?.name, 0)
         MyApplication[this].getMovieDatabaseReference().child(movieId.toString())
             .setValue(movie) { _: DatabaseError?, _: DatabaseReference? ->
@@ -196,6 +201,7 @@ class AddMovieActivity : BaseActivity() {
                 mActivityAddMovieBinding!!.edtPrice.setText("")
                 mActivityAddMovieBinding!!.tvDate.text = ""
                 mActivityAddMovieBinding!!.edtImage.setText("")
+                mActivityAddMovieBinding!!.edtBanner.setText("")
                 GlobalFunction.hideSoftKeyboard(this)
                 Toast.makeText(this, getString(R.string.msg_add_movie_successfully),
                     Toast.LENGTH_SHORT).show()
