@@ -10,6 +10,7 @@ import com.duydv.vn.cinemamanager.R
 import com.duydv.vn.cinemamanager.constant.Constant
 import com.duydv.vn.cinemamanager.databinding.ItemFoodDrinkBinding
 import com.duydv.vn.cinemamanager.model.Food
+import com.duydv.vn.cinemamanager.util.GlideUtils
 import com.duydv.vn.cinemamanager.util.StringUtil
 
 class FoodDrinkAdapter(
@@ -28,6 +29,7 @@ class FoodDrinkAdapter(
 
     override fun onBindViewHolder(holder: FoodDrinkViewHolder, position: Int) {
         val food = mListFood!![position]
+        GlideUtils.loadUrl(food.image, holder.mItemFoodDrinkBinding.imgFood)
         holder.mItemFoodDrinkBinding.tvNameFood.text = food.name
         val strPrice = food.price.toString() + Constant.UNIT_CURRENCY
         holder.mItemFoodDrinkBinding.tvPriceFood.text = strPrice
