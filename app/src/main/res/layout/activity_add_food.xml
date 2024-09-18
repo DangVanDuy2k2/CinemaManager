@@ -94,7 +94,9 @@
             android:background="@drawable/bg_white_corner_6_border_gray"
             android:hint="@string/hint_image"
             android:imeOptions="actionNext"
-            android:inputType="text"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:gravity="top"
             android:padding="@dimen/define_dimen_12"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/text_size_small" />

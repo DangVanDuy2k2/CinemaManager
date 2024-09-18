@@ -22,7 +22,7 @@ import com.duydv.vn.cinemamanager.util.DateTimeUtils.convertDateToTimeStamp
 import com.duydv.vn.cinemamanager.util.DateTimeUtils.getLongCurrentTimeStamp
 import com.duydv.vn.cinemamanager.util.StringUtil.isEmpty
 import com.example.cinema.event.ResultQrCodeEvent
-import com.example.cinema.listener.IOnSingleClickListener
+import com.duydv.vn.cinemamanager.listener.IOnSingleClickListener
 import com.duydv.vn.cinemamanager.model.BookingHistory
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -168,6 +168,9 @@ class AdminBookingFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
+        mFragmentAdminBookingBinding!!.edtSearchId.setText("")
+        mKeyWord = ""
+        listBookingHistory
     }
 
     override fun onDestroy() {
@@ -180,7 +183,7 @@ class AdminBookingFragment : Fragment() {
         intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
         intentIntegrator.setPrompt("Quét mã order vé xem phim")
         intentIntegrator.setCameraId(0)
-        intentIntegrator.setOrientationLocked(true)
+        intentIntegrator.setOrientationLocked(false)
         intentIntegrator.initiateScan()
     }
 

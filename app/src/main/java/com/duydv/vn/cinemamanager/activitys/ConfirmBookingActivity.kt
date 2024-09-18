@@ -38,7 +38,7 @@ import com.duydv.vn.cinemamanager.model.SlotTime
 import com.duydv.vn.cinemamanager.model.TimeFirebase
 import com.duydv.vn.cinemamanager.prefs.DataStoreManager
 import com.duydv.vn.cinemamanager.util.StringUtil
-import com.example.cinema.listener.IOnSingleClickListener
+import com.duydv.vn.cinemamanager.listener.IOnSingleClickListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference

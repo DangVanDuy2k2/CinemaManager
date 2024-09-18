@@ -75,6 +75,7 @@ class AddCategoryActivity : BaseActivity() {
                     ).show()
                     GlobalFunction.hideSoftKeyboard(this@AddCategoryActivity)
                 }
+            onBackPressed()
             return
         }
 

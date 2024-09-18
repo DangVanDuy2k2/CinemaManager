@@ -70,6 +70,7 @@ class AddMovieActivity : BaseActivity() {
             mActivityAddMovieBinding!!.edtPrice.setText(mMovie?.price.toString())
             mActivityAddMovieBinding!!.tvDate.text = mMovie?.date
             mActivityAddMovieBinding!!.edtImage.setText(mMovie?.image)
+            mActivityAddMovieBinding!!.edtBanner.setText(mMovie?.banner)
         } else {
             mActivityAddMovieBinding!!.tvTitle.text = getString(R.string.add_movie_title)
             mActivityAddMovieBinding!!.btnAddOrEdit.text = getString(R.string.action_add)

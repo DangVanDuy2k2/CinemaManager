@@ -10,6 +10,8 @@ import com.duydv.vn.cinemamanager.R
 import com.duydv.vn.cinemamanager.activitys.BaseActivity
 import com.duydv.vn.cinemamanager.adapter.admin.AdminViewPagerAdapter
 import com.duydv.vn.cinemamanager.databinding.ActivityAdminMainBinding
+import com.example.cinema.event.ResultQrCodeEvent
+import com.google.zxing.integration.android.IntentIntegrator
 import org.greenrobot.eventbus.EventBus
 
 @SuppressLint("NonConstantResourceId")
@@ -91,15 +93,15 @@ class AdminMainActivity : BaseActivity() {
             .show()
     }
 
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        val intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
-//        if (intentResult != null && intentResult.contents != null) {
-//            EventBus.getDefault().post(ResultQrCodeEvent(intentResult.contents))
-//        } else {
-//            super.onActivityResult(requestCode, resultCode, data)
-//        }
-//    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+        if (intentResult != null && intentResult.contents != null) {
+            EventBus.getDefault().post(ResultQrCodeEvent(intentResult.contents))
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
+    }
 
     override fun onBackPressed() {
         super.onBackPressed()

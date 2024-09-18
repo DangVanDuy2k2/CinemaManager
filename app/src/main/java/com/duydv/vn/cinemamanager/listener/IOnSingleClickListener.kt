@@ -1,4 +1,4 @@
-package com.example.cinema.listener
+package com.duydv.vn.cinemamanager.listener
 
 import android.os.SystemClock
 import android.view.View

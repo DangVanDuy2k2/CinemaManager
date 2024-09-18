@@ -10,7 +10,7 @@ import com.duydv.vn.cinemamanager.adapter.admin.BookingHistoryAdapter.BookingHis
 import com.duydv.vn.cinemamanager.constant.Constant
 import com.duydv.vn.cinemamanager.databinding.ItemBookingHistoryBinding
 import com.duydv.vn.cinemamanager.util.DateTimeUtils
-import com.example.cinema.listener.IOnSingleClickListener
+import com.duydv.vn.cinemamanager.listener.IOnSingleClickListener
 import com.duydv.vn.cinemamanager.model.BookingHistory
 
 class BookingHistoryAdapter(
